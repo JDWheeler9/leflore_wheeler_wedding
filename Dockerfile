@@ -1,11 +1,11 @@
-# Use an official Nginx image
+# Use the official Nginx image
 FROM nginx:alpine
 
-# Copy your website files into the Nginx default public directory
+# copy nginx conf into container
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# copy local files (the website) into container
 COPY . /usr/share/nginx/html
 
-# Expose port 80 (Nginx default)
-EXPOSE 8080
-
-# Command to run Nginx when the container starts
+# run Nginx when the container starts
 CMD ["nginx", "-g", "daemon off;"]
